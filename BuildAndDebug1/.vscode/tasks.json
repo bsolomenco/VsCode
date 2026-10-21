@@ -2,30 +2,7 @@
 // See https://code.visualstudio.com/docs/editor/variables-reference for the documentation about the variables used in this file
 {
     "version": "2.0.0",
-    "inputs": [
-        {
-            "id": "moduleDir",
-            "type": "promptString",
-            "description": "Module subdir (relative to the workspace)",
-            "default": "${cwd}"
-        },
-        {
-            "id": "binDir",
-            "type": "promptString",
-            "description": "Binary dir (where binaries are created; must exist)",
-            "default": ".bin"
-        },
-        {
-            "id": "selectedDir_path",
-            "type": "command",
-            "command": "selectedDir.path"
-        },
-        {
-            "id": "selectedDir_name",
-            "type": "command",
-            "command": "selectedDir.name"
-        }
-    ],
+
     "tasks": [
         {
             "type": "cppbuild",
