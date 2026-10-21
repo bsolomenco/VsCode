@@ -31,7 +31,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "_preLaunchTask": "C/C++: g++ {input:moduleDir}/src/*" /*adjust this (or remove it ... but make sure you run it manually before debugging)*/
+            //"preLaunchTask": "C/C++: g++ {input:moduleDir}/src/*" //adjust this (or remove it ... but make sure you run it manually before debugging)
         }
     ]
 }
