@@ -8,8 +8,10 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/a.out",
-            "args": [],
+            "program": "${workspaceFolder}/.bin/Exe1", /*adjust this!!!*/
+            "args": [
+                //add arguments here if needed
+            ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [
@@ -29,7 +31,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: g++ src/*"
+            "_preLaunchTask": "C/C++: g++ {input:moduleDir}/src/*" /*adjust this (or remove it ... but make sure you run it manually before debugging)*/
         }
     ]
 }
