@@ -1,0 +1,70 @@
+// See https://go.microsoft.com/fwlink/?LinkId=733558 for the documentation about the tasks.json format
+// See https://code.visualstudio.com/docs/editor/variables-reference for the documentation about the variables used in this file
+{
+    "version": "2.0.0",
+    "inputs": [
+        {
+            "id": "moduleDir",
+            "type": "promptString",
+            "description": "Module subdir (relative to the workspace)",
+            "default": "${cwd}"
+        },
+        {
+            "id": "binDir",
+            "type": "promptString",
+            "description": "Binary dir (where binaries are created; must exist)",
+            "default": ".bin"
+        },
+        {
+            "id": "selectedDir_path",
+            "type": "command",
+            "command": "selectedDir.path"
+        },
+        {
+            "id": "selectedDir_name",
+            "type": "command",
+            "command": "selectedDir.name"
+        }
+    ],
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ ${file}",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o", "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "build active file"
+        }
+        ,
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ {workspaceFolder}/src/* -o ${workspaceFolderBasename}",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "src/*",
+                "-o", "${workspaceFolderBasename}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "build all files in src/"
+        }
+    ]
+}
