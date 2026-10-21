@@ -1,5 +1,8 @@
 # VisualStudio Code related
 
+## BuildAndDebug
+- how to build a simple executable in VsCode (it has its own readme)
+
 ## Prereqs
 - extension to provide `selectedDir`
 - tasks.json
