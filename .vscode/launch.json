@@ -12,7 +12,9 @@
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
-            "environment": [],
+            "environment": [
+                {"name": "TEST_ENV", "value": "test_env_value"}
+            ],
             "externalConsole": false,
             "MIMode": "gdb",
             "setupCommands": [
