@@ -1,0 +1,20 @@
+{
+  "name": "VsCodeExtension",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": { "vscode": "^1.80.0" },
+  "main": "./extension.js",
+  "activationEvents": ["onCommand:selectedFolder.get"],
+  "contributes": {
+    "commands": [
+      { "command": "selectedDir.path", "title": "Get Selected Directory path" },
+      { "command": "selectedDir.name", "title": "Get Selected Directory name" },
+      { "command": "selectedDir.run" , "title": "Run Task for Selected Directory..." }
+    ],
+    "menus": {
+      "explorer/context": [
+        { "command": "selectedDir.run", "when": "explorerResourceIsFolder", "group": "navigation@100" }
+      ]
+    }
+  }
+}
