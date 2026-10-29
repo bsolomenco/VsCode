@@ -35,7 +35,8 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "src/*",
-                "-o", "${workspaceFolderBasename}"
+                "-o",
+                "${workspaceFolderBasename}"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -45,8 +46,7 @@
             ],
             "group": "build",
             "detail": "C/C++build all files in src/"
-        }
-        ,
+        },
         {
             "type": "cppbuild",
             "label": "g++ {inputDir}/src/*",
@@ -55,7 +55,8 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${input:moduleDir}/src/*",
-                "-o", "${input:binDir}/${input:moduleDir}"
+                "-o",
+                "${input:binDir}/${input:moduleDir}"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -65,17 +66,31 @@
             ],
             "group": "build",
             "detail": "C/C++ build all from input dir"
-        }
-        ,
+        },
+        {
+            "label": "selectedDir",
+            "type": "shell",
+            "command": "echo selectedDir: path=${input:selectedDir_path}, name=${input:selectedDir_name}",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "echo selectedDir: path=${input:selectedDir_path}, name=${input:selectedDir_name}"
+        },
         {
             "type": "cppbuild",
-            "label": "C/C++: g++ {selectedDir}/src/*",
+            "label": "g++ {selectedDir}/src/*",
             "command": "/usr/bin/g++",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
                 "${input:selectedDir_path}/src/*",
-                "-o", "${input:binDir}/${input:selectedDir_name}"
+                "-o",
+                "${input:binDir}/${input:selectedDir_name}"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -85,14 +100,12 @@
             ],
             "group": "build",
             "detail": "build all from selected dir: g++ ${selectedDir_path}/src/* -o ${input:binDir}/${input:selectedDir_name}"
-        }
-        ,
-        {//for testing only
-            "label": "selectedDir",
+        },
+        {
+            "label": "defaultDir",
             "type": "shell",
-            "command": "echo selectedDir: path=${input:selectedDir_path}, name=${input:selectedDir_name}",
-            "args": [
-            ],
+            "command": "echo defaultDir: abs=${command:DefaultDir.abs}, rel=${command:DefaultDir.rel}, name=${command:DefaultDir.name}",
+            "args": [],
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -100,7 +113,29 @@
                 "$gcc"
             ],
             "group": "build",
-            "detail": "echo selectedDir: path=${input:selectedDir_path}, name=${input:selectedDir_name}"
+            "detail": "echo defaultDir: abs=${command:DefaultDir.abs}, rel=${command:DefaultDir.rel}, name=${command:DefaultDir.name}"
+        },
+        {
+            "type": "cppbuild",
+            "label": "g++ {command:DefaultDir.rel}/src/*",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${command:DefaultDir.rel}/src/*",
+                "-o", "${input:binDir}/${command:DefaultDir.name}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "C/C++build all from default selected dir: g++ ${command:DefaultDir.rel}/src/* -o ${input:binDir}/${command:DefaultDir.name}"
         }
     ]
 }

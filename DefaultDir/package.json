@@ -1,0 +1,49 @@
+{
+  "name": "DefaultDir",
+  "displayName": "DefaultDir",
+  "description": "Mark a workspace subdirectory as the default dir for build/debug.",
+  "version": "0.1.0",
+  "publisher": "local",
+  "engines": { "vscode": "^1.143.0" },
+  "main": "./extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "contributes": {
+    "commands": [
+      {"command": "DefaultDir.set"  , "title": "DefaultDir: set as default dir"         },
+      {"command": "DefaultDir.abs"  , "title": "DefaultDir: get default path (absolute)"},
+      {"command": "DefaultDir.rel"  , "title": "DefaultDir: get default path (relative)"},
+      {"command": "DefaultDir.name" , "title": "DefaultDir: get default dir name"       },
+      {"command": "DefaultDir.clr"  , "title": "DefaultDir: clear default dir"          }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "DefaultDir.set",
+          "when": "explorerResourceIsFolder && !explorerResourceIsRoot",
+          "group": "DefaultDir"
+        },
+        {
+          "command": "DefaultDir.clr",
+          "when": "explorerResourceIsFolder && DefaultDir.hasDefault",
+          "group": "DefaultDir"
+        }
+      ],
+      "commandPalette": [
+        { "command": "DefaultDir.set", "when": "false" },
+        { "command": "DefaultDir.clr", "when": "DefaultDir.hasDefault" }
+      ]
+    },
+    "colors": [
+      {
+        "id": "DefaultDir.foreground",
+        "description": "Color of the folder marked as default dir in the Explorer",
+        "defaults": {
+          "dark": "#00bfff",
+          "light": "#00bfff",
+          "highContrast": "#00bfff",
+          "highContrastLight": "#00bfff"
+        }
+      }
+    ]
+  }
+}

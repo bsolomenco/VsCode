@@ -33,5 +33,35 @@
             ],
             //"preLaunchTask": "C/C++: g++ {input:moduleDir}/src/*" //adjust this (or remove it ... but make sure you run it manually before debugging)
         }
+        ,
+        {
+            "name": "(gdb) Launch default dir",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/.bin/${command:DefaultDir.name}",
+            "args": [
+                //add arguments here if needed
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [
+                {"name": "TEST_ENV", "value": "test_env_value"}
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "g++ {command:DefaultDir.rel}/src/*" //adjust this (or remove it ... but make sure you run it manually before debugging)
+        }
     ]
 }
